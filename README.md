@@ -16,6 +16,11 @@
 | birthday_dd        | integer | NOT NULL |
 
 ### Associations
+- has_many :items
+- has_many :comments
+- belongs_to :address
+- belongs_to :credit
+
 
 ## itemsテーブル
 
@@ -32,6 +37,9 @@
 | user          | reference | NOT NULL |
 
 ### Associations 
+- belongs_to :users
+- has_many :comments
+
 
 ## comments
 
@@ -42,6 +50,9 @@
 | text   | text      | NOT NULL |
 
 ### Associations
+- belongs_to :users
+- belongs_to :items
+
 
 ## address
 
@@ -56,6 +67,8 @@
 | user          | reference | NOT NULL |
 
 ### Association
+- belongs_to :users
+
 
 ## credit
 
@@ -68,3 +81,4 @@
 | user          | reference | NOT NULL |
 
 ### Association
+- belong_to :users
