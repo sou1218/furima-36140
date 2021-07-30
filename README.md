@@ -1,24 +1,70 @@
-# README
+#テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type    | Option   |
+|------------------------------------------
+| nickname           | string  | NOT NULL |
+| email              | string  | NOT NULL |
+| encrypted_password | string  | NOT NULL |
+| family_name        | string  | NOT NULL |
+| family_name_kana   | string  | NOT NULL |
+| first_name         | string  | NOT NULL |
+| first_name_kana    | string  | NOT NULL |
+| birthday_yy        | integer | NOT NULL |
+| birthday_mm        | integer | NOT NULL |
+| birthday_dd        | integer | NOT NULL |
 
-* Ruby version
+### Associations
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+|Column         | Type      | Option   |
+|---------------------------------------
+| image         | image     | NOT NULL |
+| name          | string    | NOT NULL |
+| price         | integer   | NOT NULL |
+| delivery_fee  | reference | NOT NULL |
+| delivery_days | reference | NOT NULL |
+| delivery_area | reference | NOT NULL |
+| condition     | reference | NOT NULL |
+| experience    | text      | NOT NULL |
+| user          | reference | NOT NULL |
 
-* Database creation
+### Associations 
 
-* Database initialization
+## comments
 
-* How to run the test suite
+| Column | Type      | Option   |
+|--------------------------------
+| user   | reference | NOT NULL |
+| item   | reference | NOT NULL |
+| text   | text      | NOT NULL |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Associations
 
-* Deployment instructions
+## address
 
-* ...
+|Column         | Type      | Option   |
+|---------------------------------------
+| postal_code   | integer   | NOT NULL |
+| prefecture    | string    | NOT NULL |
+| city          | string    | NOT NULL |
+| house_number  | integer   | NOT NULL |
+| phone_number  | integer   | NOT NULL |
+| build         | string    |          |
+| user          | reference | NOT NULL |
+
+### Association
+
+## credit
+
+| Column        | Type      | Option   |
+|---------------------------------------
+| card_number   | integer   | NOT NULL |
+| time_limit_yy | integer   | NOT NULL |
+| time_limit_mm | integer   | NOT NULL |
+| security_code | integer   | NOT NULL |
+| user          | reference | NOT NULL |
+
+### Association
