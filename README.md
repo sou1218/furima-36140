@@ -2,78 +2,72 @@
 
 ## usersテーブル
 
-| Column             | Type    | Option                |
-|-------------------------------------------------------
-| nickname           | string  | NOT NULL              |
-| email              | string  | NOT NULL, UNIQUE TRUE |
-| encrypted_password | string  | NOT NULL              |
-| family_name        | string  | NOT NULL              |
-| family_name_kana   | string  | NOT NULL              | 
-| first_name         | string  | NOT NULL              |
-| first_name_kana    | string  | NOT NULL              |
-| birthday           | date    | NOT NULL              |
+| Column             | Type    | Option                    |
+|------------------------------------------------------------
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| family_name        | string  | null: false               |
+| family_name_kana   | string  | null: false               | 
+| first_name         | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| birthday           | date    | null: false               |
 
 
 ### Associations
 - has_many :buy_items
 - has_many :comments
-- belongs_to :address
 
 
 ## buy_itemsテーブル
 
-|Column            | Type      | Option   |
-|------------------------------------------
-| name             | string    | NOT NULL |
-| price            | integer   | NOT NULL |
-| condition_id     | integer   | NOT NULL |
-| experience       | text      | NOT NULL |
-| users            | reference | NOT NULL |
-| comments         | text      | NOT NULL |
+|Column         | Type      | Option                         |
+|----------------------------------------------------------- |
+| name          | string    | null: false                    |
+| price         | integer   | null: false                    |
+| condition_id  | integer   | null: false                    |
+| experience    | text      | null: false                    |
+| user          | reference | null: false, foreign_key: true |
 
 ### Associations 
 - belongs_to :user
 - has_many :comments
 
 
-## shopping_address
+## buy_management
 
-| Column           | Type      | NOT NULL |
-|------------------------------------------
-| delivery_fee_id  | integer   | NOT NULL |
-| delivery_day_id  | integer   | NOT NULL |
-| delivery_area_id | integer   | NOT NULL |
-
-### Associations
-- has_many :buy_items
+| Column   | Type      | Option                         |
+|-------------------------------------------------------|
+| user     | reference | null: false, foreign_key: true |
+| buy_item | reference | null: false, foreign_key: true |
 
 
 ## comments
 
-| Column     | Type      | Option   |
-|------------------------------------
-| users      | reference | NOT NULL |
-| buy_item   | reference | NOT NULL |
-| text       | text      | NOT NULL |
+| Column    | Type      | Option                         |
+|---------------------------------------------------------
+| user      | reference | null: false, foreign_key: true |
+| buy_item  | reference | null: false                    |
+| text      | text      | null: false                    |
 
 ### Associations
 - belongs_to :user
 - belongs_to :buy_item
 
 
-## address
+## shopping_address
 
-|Column         | Type      | Option   |
-|---------------------------------------
-| postal_code   | string    | NOT NULL |
-| prefecture    | string    | NOT NULL |
-| city          | string    | NOT NULL |
-| house_number  | string    | NOT NULL |
-| phone_number  | string    | NOT NULL |
-| build         | string    |          |
-| users         | reference | NOT NULL |
+|Column         | Type       | Option                         |
+|-------------------------------------------------------------|
+| postal_code   | string     | null: false                    | 
+| prefecture    | integer    | null: false                    |
+| city          | string     | null: false                    |
+| house_number  | string     | null: false                    |
+| phone_number  | string     | null: false                    | 
+| build         | string     |                                |
+| buy_management| reference  | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
+- belongs_to :buy_management
 
 
