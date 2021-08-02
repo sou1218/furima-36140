@@ -2,83 +2,78 @@
 
 ## usersテーブル
 
-| Column             | Type    | Option   |
-|------------------------------------------
-| nickname           | string  | NOT NULL |
-| email              | string  | NOT NULL |
-| encrypted_password | string  | NOT NULL |
-| family_name        | string  | NOT NULL |
-| family_name_kana   | string  | NOT NULL |
-| first_name         | string  | NOT NULL |
-| first_name_kana    | string  | NOT NULL |
-| birthday_yy        | integer | NOT NULL |
-| birthday_mm        | integer | NOT NULL |
-| birthday_dd        | integer | NOT NULL |
+| Column             | Type    | Option                |
+|-------------------------------------------------------
+| nickname           | string  | NOT NULL              |
+| email              | string  | NOT NULL, UNIQUE TRUE |
+| encrypted_password | string  | NOT NULL              |
+| family_name        | string  | NOT NULL              |
+| family_name_kana   | string  | NOT NULL              | 
+| first_name         | string  | NOT NULL              |
+| first_name_kana    | string  | NOT NULL              |
+| birthday           | date    | NOT NULL              |
+
 
 ### Associations
-- has_many :items
+- has_many :buy_items
 - has_many :comments
 - belongs_to :address
-- belongs_to :credit
 
 
-## itemsテーブル
+## buy_itemsテーブル
 
-|Column         | Type      | Option   |
-|---------------------------------------
-| image         | image     | NOT NULL |
-| name          | string    | NOT NULL |
-| price         | integer   | NOT NULL |
-| delivery_fee  | reference | NOT NULL |
-| delivery_days | reference | NOT NULL |
-| delivery_area | reference | NOT NULL |
-| condition     | reference | NOT NULL |
-| experience    | text      | NOT NULL |
-| user          | reference | NOT NULL |
+|Column            | Type      | Option   |
+|------------------------------------------
+| name             | string    | NOT NULL |
+| price            | integer   | NOT NULL |
+| condition_id     | integer   | NOT NULL |
+| experience       | text      | NOT NULL |
+| users            | reference | NOT NULL |
+| comments         | text      | NOT NULL |
 
 ### Associations 
-- belongs_to :users
+- belongs_to :user
 - has_many :comments
+
+
+## shopping_address
+
+| Column           | Type      | NOT NULL |
+|------------------------------------------
+| delivery_fee_id  | integer   | NOT NULL |
+| delivery_day_id  | integer   | NOT NULL |
+| delivery_area_id | integer   | NOT NULL |
+
+### Associations
+- has_many :buy_items
 
 
 ## comments
 
-| Column | Type      | Option   |
-|--------------------------------
-| user   | reference | NOT NULL |
-| item   | reference | NOT NULL |
-| text   | text      | NOT NULL |
+| Column     | Type      | Option   |
+|------------------------------------
+| users      | reference | NOT NULL |
+| buy_item   | reference | NOT NULL |
+| text       | text      | NOT NULL |
 
 ### Associations
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :buy_item
 
 
 ## address
 
 |Column         | Type      | Option   |
 |---------------------------------------
-| postal_code   | integer   | NOT NULL |
+| postal_code   | string    | NOT NULL |
 | prefecture    | string    | NOT NULL |
 | city          | string    | NOT NULL |
-| house_number  | integer   | NOT NULL |
-| phone_number  | integer   | NOT NULL |
+| house_number  | string    | NOT NULL |
+| phone_number  | string    | NOT NULL |
 | build         | string    |          |
-| user          | reference | NOT NULL |
+| users         | reference | NOT NULL |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 
-## credit
-
-| Column        | Type      | Option   |
-|---------------------------------------
-| card_number   | integer   | NOT NULL |
-| time_limit_yy | integer   | NOT NULL |
-| time_limit_mm | integer   | NOT NULL |
-| security_code | integer   | NOT NULL |
-| user          | reference | NOT NULL |
-
-### Association
-- belong_to :users
