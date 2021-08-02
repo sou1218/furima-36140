@@ -17,7 +17,7 @@
 ### Associations
 - has_many :buy_items
 - has_many :comments
-- has_many :buy_management
+- has_many :buy_managements
 
 
 ## buy_itemsテーブル
@@ -30,12 +30,14 @@
 | experience    | text        | null: false                    |
 | user          | reference   | null: false, foreign_key: true |
 | delivery_fee_id | integer   | null: false                    |
-| delivery_area_id | integer  | null: false                    |
+| prefecture_id | integer  | null: false                    |
 | delivery_day_id | integer   | null: false                    |
+| category_id | integer  | null: false                        |
 
 ### Associations 
 - belongs_to :user
 - has_many :comments
+- belongs_to :buy_management
 
 
 ## buy_management
@@ -46,8 +48,9 @@
 | buy_item | reference | null: false, foreign_key: true |
 
 ### Association
-- has_many :buy_items
+- belongs_to :buy_items
 - belongs_to :user
+- belongs_to :shopping_address
 
 
 ## comments
