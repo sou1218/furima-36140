@@ -22,44 +22,44 @@
 
 ## buy_itemsテーブル
 
-|Column         | Type        | Option                         |
-|-----------------------------------------------------------   |
-| name          | string      | null: false                    |
-| price         | integer     | null: false                    |
-| condition_id  | integer     | null: false                    |
-| experience    | text        | null: false                    |
-| user          | reference   | null: false, foreign_key: true |
-| delivery_fee_id | integer   | null: false                    |
-| prefecture_id | integer  | null: false                    |
-| delivery_day_id | integer   | null: false                    |
-| category_id | integer  | null: false                        |
+|Column           | Type        | Option                         |
+|--------------------------------------------------------------- 
+| name            | string      | null: false                    |
+| price           | integer     | null: false                    |
+| condition_id    | integer     | null: false                    |
+| experience      | text        | null: false                    |
+| user            | references  | null: false, foreign_key: true |
+| delivery_fee_id | integer     | null: false                    |
+| prefecture_id   | integer     | null: false                    |
+| delivery_day_id | integer     | null: false                    |
+| category_id     | integer     | null: false                    |
 
 ### Associations 
 - belongs_to :user
 - has_many :comments
-- belongs_to :buy_management
+- has_one :buy_management
 
 
 ## buy_management
 
-| Column   | Type      | Option                         |
-|-------------------------------------------------------|
-| user     | reference | null: false, foreign_key: true |
-| buy_item | reference | null: false, foreign_key: true |
+| Column   | Type       | Option                         |
+|------------------------------------------------------- |
+| user     | references | null: false, foreign_key: true |
+| buy_item | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :buy_items
+- belongs_to :buy_item
 - belongs_to :user
-- belongs_to :shopping_address
+- has_one :shopping_address
 
 
 ## comments
 
-| Column    | Type      | Option                         |
+| Column    | Type       | Option                         |
 |---------------------------------------------------------
-| user      | reference | null: false, foreign_key: true |
-| buy_item  | reference | null: false                    |
-| text      | text      | null: false                    |
+| user      | references | null: false, foreign_key: true |
+| buy_item  | references | null: false                    |
+| text      | text       | null: false                    |
 
 ### Associations
 - belongs_to :user
@@ -76,7 +76,7 @@
 | house_number  | string     | null: false                    |
 | phone_number  | string     | null: false                    | 
 | build         | string     |                                |
-| buy_management| reference  | null: false, foreign_key: true |
+| buy_management| references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :buy_management
