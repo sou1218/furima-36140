@@ -40,7 +40,7 @@
 - has_one :buy_management
 
 
-## buy_management
+## buy_managements
 
 | Column   | Type       | Option                         |
 |------------------------------------------------------- |
@@ -66,7 +66,7 @@
 - belongs_to :buy_item
 
 
-## shopping_address
+## shopping_addresses
 
 |Column         | Type       | Option                         |
 |-------------------------------------------------------------|
@@ -75,7 +75,7 @@
 | city          | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | phone_number  | string     | null: false                    | 
-| build         | string     |                                |
+| building      | string     |                                |
 | buy_management| references | null: false, foreign_key: true |
 
 ### Association
