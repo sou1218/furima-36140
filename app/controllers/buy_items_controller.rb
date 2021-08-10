@@ -5,10 +5,18 @@ class BuyItemsController < ApplicationController
 
   def new
     @buy_item = BuyItem.new
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
   def create
     @buy_item = BuyItem.new(buy_item_params)
+    if @buy_item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
