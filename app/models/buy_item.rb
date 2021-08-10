@@ -19,7 +19,7 @@ class BuyItem < ApplicationRecord
 
   with_options presence: true do
     validates :name
-    validates :price
+    validates :price,           format: {with: /\A^[0-9]+$\z/}
     validates :experience
     validates :condition_id
     validates :prefecture_id
@@ -27,5 +27,7 @@ class BuyItem < ApplicationRecord
     validates :delivery_day_id
     validates :delivery_fee_id
   end
+
+    validates_inclusion_of :price, in:300..9999999
 
 end
