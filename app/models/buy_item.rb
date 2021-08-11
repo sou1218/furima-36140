@@ -3,11 +3,11 @@ class BuyItem < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :condition_id
-  belongs_to :delivery_fee_id
-  belongs_to :delivery_day_id
-  belongs_to :prefecture_id
-  belongs_to :category_id
+  belongs_to :condition
+  belongs_to :delivery_fee
+  belongs_to :delivery_day
+  belongs_to :prefecture
+  belongs_to :category
 
   with_options numericality: { other_than: 1, message: "can't be blanck"} do
     validates :condition_id
