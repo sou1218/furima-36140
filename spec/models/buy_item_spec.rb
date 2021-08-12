@@ -90,6 +90,23 @@ RSpec.describe BuyItem, type: :model do
         @buy_item.valid?
         expect(@buy_item.errors.full_messages).to include("Price is not included in the list")
       end
+
+      it 'priceが10000000以上では出品できない' do
+        @buy_item.price = 10000000
+        @buy_item.valid?
+        expect(@buy_item.errors.full_messages).to include("Price is not included in the list")
+      end
+
+      it 'priceは半角英数字混合では出品できない' do
+        @buy_item.price = 'a1b2'
+        @buy_item.valid?
+        expect(@buy_item.errors.full_messages).to include("Price is not included in the list")
+      end
+
+      it 'userが紐付いていないと出品できない' do
+        @buy_item.user = nil
+        @buy_item.valid?
+        expect(@buy_item.errors.full_messages).to include('User must exist')
     end
   end
 end
