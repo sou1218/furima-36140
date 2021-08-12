@@ -18,9 +18,10 @@ class BuyItem < ApplicationRecord
   end
 
   with_options presence: true do
-    validates :name
+    validates :image
+    validates :name,            length: {maximum: 40}
     validates :price,           format: {with: /\A^[0-9]+$\z/}
-    validates :experience
+    validates :experience,      length: {maximum: 1000}
     validates :condition_id
     validates :prefecture_id
     validates :category_id
