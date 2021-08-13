@@ -3,7 +3,7 @@ class BuyItemsController < ApplicationController
   before_action :set_message, only: [:create, :new]
 
   def index
-    #@buy_item = BuyItem.all
+    @buy_item = BuyItem.all
   end
 
   def new
