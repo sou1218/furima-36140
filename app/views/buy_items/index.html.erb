@@ -128,10 +128,10 @@
     </div>
     <ul class='item-lists'>
 
-      <% if @buy_item.present? %>
-        <% @buy_item.each do |buy_item| %>
+      <% if @buy_items.present? %>
+        <% @buy_items.each do |buy_item| %>
           <li class='list'>
-            <%= link_to buy_item_path(@buy_item) do %>
+            <%= link_to buy_item_path(buy_item) do %>
               <div class='item-img-content'>
                 <%= image_tag buy_item.image, class: 'item-img' %>
 
@@ -141,10 +141,10 @@
               </div> 
                 <div class='item-info'>
                   <h3 class='item-name'>
-                    <%= "#{buy_item.name}" %>
+                    <%= buy_item.name %>
                   </h3>
                   <div class='item-price'>
-                    <span><%= "#{buy_item.price}" %>円<br><%= "#{buy_item.delivery_fee.name}" %></span>
+                    <span><%= buy_item.price %>円<br><%= buy_item.delivery_fee.name %></span>
                     <div class='star-btn'>
                       <%= image_tag "star.png", class:"star-icon" %>
                       <span class='star-count'>0</span>

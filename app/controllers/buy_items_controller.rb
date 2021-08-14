@@ -3,7 +3,7 @@ class BuyItemsController < ApplicationController
   before_action :set_message, only: [:create, :new]
 
   def index
-    @buy_item = BuyItem.order(id: "DESC")
+    @buy_items = BuyItem.order(id: "DESC")
   end
 
   def new
@@ -20,12 +20,12 @@ class BuyItemsController < ApplicationController
   end
 
   def show
-    @buy_item = BuyItem.all
+    @buy_item = BuyItem.find(params[:id])
   end
 
 
   private
-  
+
   def buy_item_params
     params.require(:buy_item).permit(:image, :name, :price, :experience, :condition_id,  :delivery_fee_id, :delivery_day_id, :category_id, :prefecture_id).merge(user_id: current_user.id)
   end
