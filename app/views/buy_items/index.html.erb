@@ -131,7 +131,7 @@
       <% if @buy_item.present? %>
         <% @buy_item.each do |buy_item| %>
           <li class='list'>
-            <%= link_to "#" do %>
+            <%= link_to buy_item_path(@buy_item) do %>
               <div class='item-img-content'>
                 <%= image_tag buy_item.image, class: 'item-img' %>
 

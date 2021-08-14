@@ -19,7 +19,13 @@ class BuyItemsController < ApplicationController
     end
   end
 
+  def show
+    @buy_item = BuyItem.all
+  end
+
+
   private
+  
   def buy_item_params
     params.require(:buy_item).permit(:image, :name, :price, :experience, :condition_id,  :delivery_fee_id, :delivery_day_id, :category_id, :prefecture_id).merge(user_id: current_user.id)
   end
