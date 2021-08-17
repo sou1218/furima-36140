@@ -23,6 +23,22 @@ class BuyItemsController < ApplicationController
     @buy_item = BuyItem.find(params[:id])
   end
 
+  def edit
+    @buy_item = BuyItem.find(params[:id])
+    unless @buy_item.user == current_user
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @buy_item = BuyItem.find(params[:id])
+    if @buy_item.update(buy_item_params)
+      redirect_to buy_item_path
+    else
+      render :edit
+    end
+  end
+
 
   private
 
