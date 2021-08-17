@@ -1,6 +1,6 @@
 class BuyItemsController < ApplicationController
 
-  before_action :set_message, only: [:create, :new]
+  before_action :set_message, only: [:create, :new, :edit, :update]
   before_action :second_message, only: [:show, :edit, :update]
 
   def index
