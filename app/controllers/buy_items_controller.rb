@@ -1,7 +1,7 @@
 class BuyItemsController < ApplicationController
 
-  before_action :set_message, only: [:create, :new, :edit, :update]
-  before_action :second_message, only: [:show, :edit, :update]
+  before_action :set_message, only: [:create, :new, :edit, :update, :destroy]
+  before_action :second_message, only: [:show, :edit, :update, :destroy]
 
   def index
     @buy_items = BuyItem.order(id: "DESC")
@@ -35,6 +35,14 @@ class BuyItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @buy_item.user == current_user
+      @buy_item.destroy
+    end
+
+    redirect_to root_path
   end
 
 
