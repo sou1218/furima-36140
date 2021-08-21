@@ -1,6 +1,6 @@
 class CreateOders < ActiveRecord::Migration[6.0]
   def change
-    create_table :oders do |t|
+    create_table :orders do |t|
 
       t.timestamps
     end

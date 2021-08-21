@@ -13,8 +13,8 @@ class BuyAddress
   end
 
   def save
-    buy_info = BuyInfo.create(buy_item_id: buy_item_id, user_id: user_id)
+    order = Oder.create(buy_item_id: buy_item_id, user_id: user_id)
 
     shopping_address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, building: building, house_number: house_number, phone_number: phone_number, buy_info_id: buy_info.id)
-
+  end
 end
