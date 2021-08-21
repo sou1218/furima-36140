@@ -1,7 +1,7 @@
 class BuyItem < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  belongs_to :oder
+  has_one :oder
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :condition

@@ -17,7 +17,7 @@
 ### Associations
 - has_many :buy_items
 - has_many :comments
-- has_many :buy_managements
+- has_many :oder
 
 
 ## buy_itemsテーブル
@@ -37,10 +37,10 @@
 ### Associations 
 - belongs_to :user
 - has_many :comments
-- has_one :buy_management
+- has_one :oder
 
 
-## buy_info
+## oder
 
 | Column   | Type       | Option                         |
 |------------------------------------------------------- |
@@ -79,7 +79,7 @@
 | buy_management| references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :buy_management
+- belongs_to :oder
 
 
 
