@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_160709) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_shopping_addresses_on_order_id"
+
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

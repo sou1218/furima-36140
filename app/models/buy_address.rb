@@ -16,5 +16,6 @@ class BuyAddress
     order = Order.create(buy_item_id: buy_item_id, user_id: user_id)
 
     ShoppingAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, building: building, house_number: house_number, phone_number: phone_number, order_id: order.id)
+
   end
 end
