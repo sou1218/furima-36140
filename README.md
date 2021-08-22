@@ -76,7 +76,7 @@
 | house_number  | string     | null: false                    |
 | phone_number  | string     | null: false                    | 
 | building      | string     |                                |
-| buy_management| references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :oder
