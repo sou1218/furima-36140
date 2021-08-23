@@ -9,7 +9,7 @@ class BuyAddress
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blanck"}
     validates :city
     validates :house_number
-    validates :phone_number, format: {with: /\A\d{11}\z/}
+    validates :phone_number, format: {with: /\A\d{10,11}\z/}
   end
 
   def save
