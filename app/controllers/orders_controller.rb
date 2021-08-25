@@ -7,10 +7,12 @@ class OrdersController < ApplicationController
 
     if @buy_item.order.present?
       redirect_to root_path
+      return
     end
 
     if @buy_item.user_id == current_user.id
       redirect_to root_path
+      return
     end
   end
 

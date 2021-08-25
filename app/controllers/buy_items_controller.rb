@@ -27,6 +27,10 @@ class BuyItemsController < ApplicationController
     unless @buy_item.user == current_user
       redirect_to root_path
     end
+
+    if @buy_item.order.present?
+      redirect_to root_path
+    end
   end
 
   def update

@@ -24,15 +24,16 @@
     </div>
 
   <% if user_signed_in? %>
+   <% unless @buy_item.order.present? %>
     <% if current_user.id == @buy_item.user.id %>
       <%= link_to "商品の編集", edit_buy_item_path, method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", buy_item_path(@buy_item.id), method: :delete, class:"item-destroy" %>
-
     <% else %>
+   
       <%= link_to "購入画面に進む", buy_item_orders_path(@buy_item.id), class:"item-red-btn"%>
-
     <% end %>
+   <% end %>
   <% end %>
       <div class="item-explain-box">
         <span><%= @buy_item.experience %></span>
