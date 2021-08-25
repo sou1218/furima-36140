@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @buy_address = BuyAddress.new
     @buy_item = BuyItem.find(params[:buy_item_id])
 
     if @buy_item.order.present?
+      redirect_to root_path
+    end
+
+    if @buy_item.user_id == current_user.id
       redirect_to root_path
     end
   end
