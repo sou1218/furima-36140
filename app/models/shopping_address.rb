@@ -1,3 +1,3 @@
 class ShoppingAddress < ApplicationRecord
-  belongs_to :oder
+  belongs_to :order
 end
