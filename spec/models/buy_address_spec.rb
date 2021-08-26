@@ -62,6 +62,30 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'Userが紐づいていなければ購入できない' do
+        @buy_address.user = nil
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include('User must exist')
+      end
+
+      it 'BuyItemが紐づいていないと購入できない' do
+        @buy_address.buy_item = nil
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include('BuyItem must exist')
+      end
+
+      it 'phone_numberが9桁以下では購入できない' do
+        @buy_address.phone_number = '090123123'
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberが12桁以上では購入できない' do
+        @buy_address.phone_number = '0901234512345'
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
+      end
     end
   end
 end

@@ -16,7 +16,6 @@
 
 ### Associations
 - has_many :buy_items
-- has_many :comments
 - has_many :order
 
 

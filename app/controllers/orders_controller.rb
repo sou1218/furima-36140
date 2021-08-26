@@ -1,23 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_message, only: [:index, :create]
+  before_action :if_message, only: [:index, :create]
 
   def index
     @buy_address = BuyAddress.new
-    @buy_item = BuyItem.find(params[:buy_item_id])
-
-    if @buy_item.order.present?
-      redirect_to root_path
-      return
-    end
-
-    if @buy_item.user_id == current_user.id
-      redirect_to root_path
-      return
-    end
   end
 
   def create
-    @buy_item = BuyItem.find(params[:buy_item_id])
     @buy_address = BuyAddress.new(order_params)
     if @buy_address.valid?
       pay_item
@@ -38,9 +28,25 @@ private
     params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :house_number, :phone_number, :building).merge(user_id: current_user.id, buy_item_id: params[:buy_item_id], token: params[:token])
   end
 
+  def set_message
+    @buy_item = BuyItem.find(params[:buy_item_id])
+  end
+
+  def if_message
+    if @buy_item.order.present?
+      redirect_to root_path
+      return
+    end
+
+    if @buy_item.user_id == current_user.id
+      redirect_to root_path
+      return
+    end
+  end
+
+
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp.api_key = "sk_test_1f0fc6bc4fddacfa24ece479"
       Payjp::Charge.create(
         amount: @buy_item.price,  
         card: order_params[:token],    
