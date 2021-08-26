@@ -17,7 +17,7 @@
 ### Associations
 - has_many :buy_items
 - has_many :comments
-- has_many :order
+- has_many :buy_managements
 
 
 ## buy_itemsテーブル
@@ -37,10 +37,10 @@
 ### Associations 
 - belongs_to :user
 - has_many :comments
-- has_one :order
+- has_one :buy_management
 
 
-## order
+## buy_managements
 
 | Column   | Type       | Option                         |
 |------------------------------------------------------- |
@@ -76,11 +76,27 @@
 | house_number  | string     | null: false                    |
 | phone_number  | string     | null: false                    | 
 | building      | string     |                                |
-| order         | references | null: false, foreign_key: true |
+| buy_management| references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :order
+- belongs_to :buy_management
 
 
 
 
+class CreateBuyItems < ActiveRecord::Migration[6.0]
+  def change
+    create_table :buy_items do |t|
+      t.string name, null: false
+      t.integer price, null: false
+      t.integer condition_id, null: false
+      t.text experience, null: false
+      t.references user, null: false, foreign_key: true
+      t.integer delivery_fee_id, null: false
+      t.integer prefecture_id, null: false
+      t.integer delivery_day_id, null: false
+      t.integer category_id, null: false
+      t.timestamps
+    end
+  end
+end
