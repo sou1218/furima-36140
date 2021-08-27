@@ -52,7 +52,8 @@ private
         card: order_params[:token],    
         currency: 'jpy'                 
       )
-  end
+  end 
+  
 
 end
 
