@@ -13,7 +13,7 @@
         exp_month: formData.get("buy_address[exp_month]"),
         exp_year: `20${formData.get("buy_address[exp_year]")}`,
       };
-
+     
 
       Payjp.createToken(card, (status, response) => {
         if (status === 200) {
