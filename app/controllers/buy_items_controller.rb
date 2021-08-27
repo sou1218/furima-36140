@@ -26,10 +26,12 @@ class BuyItemsController < ApplicationController
   def edit
     unless @buy_item.user == current_user
       redirect_to root_path
+      return
     end
 
     if @buy_item.order.present?
       redirect_to root_path
+      return
     end
   end
 
