@@ -53,6 +53,7 @@ private
         currency: 'jpy'                 
       )
   end 
+
   
 
 end
